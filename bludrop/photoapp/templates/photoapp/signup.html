@@ -28,12 +28,14 @@
         </div>
 
         <div class="form_container">
-            <form  method="get">
+            <form action="{% url 'home'  %}" method="get">
                 {%csrf_token%}
-                {{form.as_p}}
+                {{form}}
+              <button>Claim your free trial</button>
             </form>
           <!-- <form id="form">
-            <label for="firstname" class="form_control" data-error="First Name cannot be empty">
+            {%csrf_token%} -->
+            <!-- <label for="firstname" class="form_control" data-error="First Name cannot be empty">
               <input type="text"placeholder="First Name"id="firstname"required data-error="First Name cannot be empty"/>
             </label>
             <label for="lastname" class="form_control" data-error="Last Name cannot be empty">
