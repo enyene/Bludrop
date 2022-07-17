@@ -46,3 +46,8 @@ def login(request):
     else:
          form = UserCreationForm()
          return render(request,'photoapp/signup.html',{'form':form})
+
+
+def logout(request):
+    logout(request)
+    return redirect('home')
