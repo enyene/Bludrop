@@ -1,10 +1,38 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView,DetailView,DeleteView,UpdateView,CreateView
+from .models import Photo,Comment
 
 # Create your views here.
+
+class PhotoListView(ListView):
+    model = Photo
+    
+class PhotoCreateView(CreateView):
+    model = Photo
+    fields = ('name','description')
+
+
+class PhotoDeleteView(DeleteView):
+    model = Photo
+    success_url = reverse_lazy('photoapp:photo')
+
+
+class PhotoDetailView(DetailView):
+    model = Photo
+    #get_context_data = 'photos'
+    template_name = 'photoapp/photo_detail.html'
+
+class PhotoUpdateView(UpdateView):
+    model = Photo
+    fields = [
+        'description'
+    ]
+
 
 def index(request):
     return render(request,'photoapp/index.html')
